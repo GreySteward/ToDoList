@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rename this basecode!</title>
+    <title>To Do List!</title>
     <script type="text/javascript" src="/vendors/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/clientapp.js"></script>
+<!--<script type="text/javascript" src="/scripts/clientapp.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>-->
 </head>
 <body>
-<h1>Rename this Text</h1>
-<form id="name-form">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" />
+<div id="banner"></div>
+<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTDOp7c1v28Yv7ACXXPu0E7sawniv_VImhoCgEk0GXdyAU5q5YdPA" width="100"/>
+<div class="background">
+<h1>Do, Doing, Done!</h1>
+</div>
+<form id="task-form">
+    <label for="task-add">To Do!:</label>
+    <input type="text" id="task-add" name="task-add" />
 
-    <button id="post-name">Post!</button>
+    <button id="post-name">Add!</button>
 </form>
-<form id="generic label">
-    <label for="generic label">Generic Label:</label>
-    <input type="text" id="generic label" name="generic label" />
 
-    <button id="post-generic">Post!</button>
-</form>
 
 <div id="ajax-names"></div>
 <div id="ajax-animals"></div>
 <div id="ajax-pairs"></div>
 
-<div class="container">
-    <button id="combine">Magic</button>
+<div class="task-list">
+    <label for="task-list">To Do List:</label>
+
+    <button id="combine">Action!</button>
+</div>
+<div>
+    <button id="delete">Delete!</button>
 </div>
 </body>
 </html>

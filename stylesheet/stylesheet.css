@@ -1,6 +1,10 @@
 .container {
     padding: 20px;
     border: 1px solid gray;
-    width: 40%;
+    width: 100%;
 
+}
+.banner {
+    height:100px;
+    width: 100%;
 }

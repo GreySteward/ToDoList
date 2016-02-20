@@ -1,25 +1,25 @@
 $(document).ready(function() {
-    $('#post-name').on('click', clickPostName);
-    $('#post-animal').on('click', clickPostAnimal);
-    $('.container').on('click', '#combine', clickCombine);
+    $('#post-task').on('click', clickPostTask);
+//    $('#post-animal').on('click', clickPostAnimal);
+//    $('.container').on('click', '#combine', clickCombine);
 
 });
 
-function clickPostName() {
+function clickPostTask() {
     event.preventDefault();
     var values = {};
 
-    $.each($('#name-form').serializeArray(), function(i, field) {
+    $.each($('#task-form').serializeArray(), function(i, field) {
         values[field.name] = field.value;
     });
     //console.log(values);
-    //console.log(nameArray);
+    //console.log(taskArray);
 
-    $('#post-name').find('input[type=text]').val('');
+    $('#post-task').find('input[type=text]').val('');
 
     $.ajax({
         type: 'POST',
-        url: '/name',
+        url: '/tasklist',
         data: values,
         beforeSend: function() {
             //console.log('before!');
@@ -27,62 +27,94 @@ function clickPostName() {
         success: function(data) {
             //console.log('From Server: ', data);
             console.log(data);
-            $('#ajax-names').children().remove();
+            $('#ajax-tasks').children().remove();
             data.forEach(function(person, i){
 
-                $('#ajax-names').append('<div class="name">' + data[i].name + '</div>');
-                $('#name-form').find('input[type=text]').val('');
+                $('#ajax-tasks').append('<div class="task-list">' + data[i].name + '</div>');
+                $('#task-form').find('input[type=text]').val('');
             });
         }
     });
 }
 
-function clickPostAnimal() {
+function clickPostTask() {
     event.preventDefault();
     var values = {};
 
-    $.each($('#animal-form').serializeArray(), function(i, field) {
+    $.each($('#task-form').serializeArray(), function(i, field) {
         values[field.name] = field.value;
     });
+    //console.log(values);
+    //console.log(taskArray);
 
-    $('#post-animal').find('input[type=text]').val('');
+    $('#post-task').find('input[type=text]').val('');
 
     $.ajax({
         type: 'POST',
-        url: '/animal',
+        url: '/tasklist/delete',
         data: values,
         beforeSend: function() {
             //console.log('before!');
         },
         success: function(data) {
             //console.log('From Server: ', data);
-            //console.log(data);
-            $('#ajax-animals').children().remove();
+            console.log(data);
+            $('#ajax-tasks').children().remove();
             data.forEach(function(person, i){
 
-                $('#ajax-animals').append('<div class="animal">' + data[i].spiritAnimal + '</div>');
-                $('#animal-form').find('input[type=text]').val('');
+                $('#ajax-tasks').append('<div class="task-list">' + data[i].name + '</div>');
+                $('#task-form').find('input[type=text]').val('');
             });
         }
     });
 }
 
-function clickCombine() {
-    event.preventDefault();
-
-    $.ajax({
-        type: 'GET',
-        url: '/combine',
-
-        //beforeSend: function() {
-        //    //console.log('before!');
-        //},
-        success: function(data) {
-            console.log('From Server: ', data);
-            //console.log(data);
-            //data
-            $('#ajax-pairs').children().remove();
-            $('#ajax-pairs').append('<div class="pair">' + data + '</div>');
-        }
-    });
-}
+//function clickPostAnimal() {
+//    event.preventDefault();
+//    var values = {};
+//
+//    $.each($('#animal-form').serializeArray(), function(i, field) {
+//        values[field.name] = field.value;
+//    });
+//
+//    $('#post-animal').find('input[type=text]').val('');
+//
+//    $.ajax({
+//        type: 'POST',
+//        url: '/animal',
+//        data: values,
+//        beforeSend: function() {
+//            //console.log('before!');
+//        },
+//        success: function(data) {
+//            //console.log('From Server: ', data);
+//            //console.log(data);
+//            $('#ajax-animals').children().remove();
+//            data.forEach(function(person, i){
+//
+//                $('#ajax-animals').append('<div class="animal">' + data[i].spiritAnimal + '</div>');
+//                $('#animal-form').find('input[type=text]').val('');
+//            });
+//        }
+//    });
+//}
+//
+//function clickCombine() {
+//    event.preventDefault();
+//
+//    $.ajax({
+//        type: 'GET',
+//        url: '/combine',
+//
+//        //beforeSend: function() {
+//        //    //console.log('before!');
+//        //},
+//        success: function(data) {
+//            console.log('From Server: ', data);
+//            //console.log(data);
+//            //data
+//            $('#ajax-pairs').children().remove();
+//            $('#ajax-pairs').append('<div class="pair">' + data + '</div>');
+//        }
+//    });
+//}
