@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    $('#post-task').on('click', clickPostTask);
+    $('#post-task').on('click', clickPostTask());
 //    $('#post-animal').on('click', clickPostAnimal);
 //    $('.container').on('click', '#combine', clickCombine);
 
 });
 
-function clickPostTask() {
+var clickPostTask = function() {
     event.preventDefault();
     var values = {};
 
@@ -51,10 +51,10 @@ function clickPostTask() {
 
     $.ajax({
         type: 'POST',
-        url: '/tasklist/delete',
+        url: '/tasklist',
         data: values,
         beforeSend: function() {
-            //console.log('before!');
+            console.log('before!');
         },
         success: function(data) {
             //console.log('From Server: ', data);

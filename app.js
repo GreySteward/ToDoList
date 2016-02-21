@@ -39,6 +39,7 @@ app.get('/tasklist', function(req, res) {
 });
 
 app.post('/tasklist', function(req, res) {
+    console.log(req);
     var addTask = {
         tasks: req.body.tasks,
         taskstatus: req.body.taskstatus,
@@ -75,7 +76,7 @@ app.post('/tasklist/delete', function(req, res) {
     pg.connect(connectionString, function(err, client, done) {
         client.query("DELETE FROM tasks WHERE(tasklist, taskstatus) VALUES ($1, $2)",
             [addTask.tasks, addTask.taskstatus],
-            function (err, result, ) {
+            function (err, result) {
                 done();
                 if(err) {
                     console.log("Error inserting data: ", err);
