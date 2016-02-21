@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#post-task').on('click', clickPostTask());
+    $('#task-form').on('click', clickPostTask);
 //    $('#post-animal').on('click', clickPostAnimal);
 //    $('.container').on('click', '#combine', clickCombine);
 

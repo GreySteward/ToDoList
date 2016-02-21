@@ -39,10 +39,11 @@ app.get('/tasklist', function(req, res) {
 });
 
 app.post('/tasklist', function(req, res) {
+    console.log('made it to post')
     console.log(req);
     var addTask = {
-        tasks: req.body.tasks,
-        taskstatus: req.body.taskstatus,
+        tasks: req.body.task-add,
+        taskstatus:1
 
 
 
