@@ -15,6 +15,11 @@ if(process.env.DATABASE_URL != undefined) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+
+
+
+
 // get data route
 app.get('/tasklist', function(req, res) {
     var results = [];
@@ -96,6 +101,12 @@ app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, './public', file));
 });
 
+//catch all for static files in lieu of app.get (./*/public)
+//app.use(express.static('public'));
+//app.use(express.static('public/views'));
+//app.use(express.static('public/scripts'));
+//app.use(express.static('public/stylesheet'));
+//app.use(express.static('public/vendors'));
 
 app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), function() {

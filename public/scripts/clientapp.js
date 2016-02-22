@@ -4,7 +4,7 @@ $(document).ready(function() {
 //    $('.container').on('click', '#combine', clickCombine);
 
 });
-
+var i = 0;
 function clickPostTask() {
     event.preventDefault();
     var values = {};
@@ -97,16 +97,15 @@ function clickPost() {
         url: '/tasklist',
 
         //beforeSend: function() {
-        //    //console.log('before!');
+        // console.log('before!');
         //},
         success: function(data) {
             console.log('From Server: ', data);
-            //console.log(data);
+            console.log(data);
             //data
             $('#task-holder').children().remove();
-            data.forEach(function(person, i) {
-
-                $('#task-holder').append('<div class="task-list">' + data[i].name + '</div>');
+           for (i = 0 , i < data.length, i++) {
+                $('#task-holder').append('<div class="task-list">' + data[i].tasklist + '</div>');
             })
         },
     })
