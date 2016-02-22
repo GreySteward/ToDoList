@@ -1,21 +1,21 @@
 $(document).ready(function() {
-    $('#task-form').on('click', clickPostTask);
+    $('#post-task').on('click', clickPostTask);
 //    $('#post-animal').on('click', clickPostAnimal);
 //    $('.container').on('click', '#combine', clickCombine);
 
 });
 
-var clickPostTask = function() {
+function clickPostTask() {
     event.preventDefault();
     var values = {};
 
     $.each($('#task-form').serializeArray(), function(i, field) {
         values[field.name] = field.value;
     });
-    //console.log(values);
+    console.log(values);
     //console.log(taskArray);
 
-    $('#post-task').find('input[type=text]').val('');
+    $('#task-form').find('input[type=text]').val('');
 
     $.ajax({
         type: 'POST',
@@ -26,18 +26,13 @@ var clickPostTask = function() {
         },
         success: function(data) {
             //console.log('From Server: ', data);
+            clickPost();
             console.log(data);
-            $('#ajax-tasks').children().remove();
-            data.forEach(function(person, i){
-
-                $('#ajax-tasks').append('<div class="task-list">' + data[i].name + '</div>');
-                $('#task-form').find('input[type=text]').val('');
-            });
         }
     });
 }
 
-function clickPostTask() {
+function clickPostUpdate() {
     event.preventDefault();
     var values = {};
 
@@ -59,12 +54,7 @@ function clickPostTask() {
         success: function(data) {
             //console.log('From Server: ', data);
             console.log(data);
-            $('#ajax-tasks').children().remove();
-            data.forEach(function(person, i){
-
-                $('#ajax-tasks').append('<div class="task-list">' + data[i].name + '</div>');
-                $('#task-form').find('input[type=text]').val('');
-            });
+            //function
         }
     });
 }
@@ -99,22 +89,25 @@ function clickPostTask() {
 //    });
 //}
 //
-//function clickCombine() {
-//    event.preventDefault();
-//
-//    $.ajax({
-//        type: 'GET',
-//        url: '/combine',
-//
-//        //beforeSend: function() {
-//        //    //console.log('before!');
-//        //},
-//        success: function(data) {
-//            console.log('From Server: ', data);
-//            //console.log(data);
-//            //data
-//            $('#ajax-pairs').children().remove();
-//            $('#ajax-pairs').append('<div class="pair">' + data + '</div>');
-//        }
-//    });
-//}
+function clickPost() {
+    event.preventDefault();
+
+    $.ajax({
+        type: 'GET',
+        url: '/tasklist',
+
+        //beforeSend: function() {
+        //    //console.log('before!');
+        //},
+        success: function(data) {
+            console.log('From Server: ', data);
+            //console.log(data);
+            //data
+            $('#task-holder').children().remove();
+            data.forEach(function(person, i) {
+
+                $('#task-holder').append('<div class="task-list">' + data[i].name + '</div>');
+            })
+        },
+    })
+}

@@ -42,7 +42,7 @@ app.post('/tasklist', function(req, res) {
     console.log('made it to post')
     console.log(req);
     var addTask = {
-        tasks: req.body.task-add,
+        tasks: req.body['task-add'],
         taskstatus:1
 
 
